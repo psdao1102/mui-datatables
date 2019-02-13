@@ -52,10 +52,7 @@ const TABLE_LOAD = {
 class MUIDataTable extends React.Component {
   static propTypes = {
     /** Title of the table */
-    title: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.function,
-	]),
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     /** Data used to describe table */
     data: PropTypes.array.isRequired,
     /** Columns used to describe table */
@@ -981,7 +978,7 @@ class MUIDataTable extends React.Component {
             />
           )}
           <MuiTable ref={el => (this.tableRef = el)} tabIndex={'0'} role={'grid'} className={classes.tableRoot}>
-            {typeof title ==="string" && (<caption className={classes.caption}>{title}</caption>)}
+            {typeof title === 'string' && <caption className={classes.caption}>{title}</caption>}
             <TableHead
               columns={columns}
               activeColumn={activeColumn}

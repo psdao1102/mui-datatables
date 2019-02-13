@@ -137,24 +137,27 @@ class TableToolbar extends React.Component {
     } = this.props;
 
     const { search, downloadCsv, print, viewColumns, filterTable } = options.textLabels.toolbar;
-	const { showSearch } = this.state;
-	const renderTitle = () => {
-		if (typeof title === 'String') return (
-		<div className={classes.titleRoot} aria-hidden={'true'}>
-			<Typography variant="h6" className={classes.titleText}>
-			{title}
-			</Typography>
-		</div>
-		)
-		return (title());
-  };
+    const { showSearch } = this.state;
+    const renderTitle = () => {
+      if (typeof title === 'string')
+        return (
+          <div className={classes.titleRoot} aria-hidden={'true'}>
+            <Typography variant="h6" className={classes.titleText}>
+              {title}
+            </Typography>
+          </div>
+        );
+      return title();
+    };
 
     return (
       <Toolbar className={classes.root} role={'toolbar'} aria-label={'Table Toolbar'}>
         <div className={classes.left}>
           {showSearch === true ? (
             <TableSearch onSearch={searchTextUpdate} onHide={this.hideSearch} options={options} />
-          ) : renderTitle()}
+          ) : (
+            renderTitle()
+          )}
         </div>
         <div className={classes.actions}>
           {options.search && (
